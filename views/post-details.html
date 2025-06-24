@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Post Details</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <!-- logo -->
+      <div class="nav container">
+        <a href="/" class="logo">Nur<span>lan</span> </a>
+        <div class="nav-right">
+          <a href="/admin" class="admin-btn"><i class="bx bxs-user"></i></a>
+          <a href="/add" class="write-btn"
+            ><i class="bx bxs-pencil"></i>Write</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+
+    <section class="post-header">
+      <div class="header-content post-container">
+        <h2 id="post-subtitle"></h2>
+
+        <h1 class="header-title" id="post-title"></h1>
+        <div id="post-image"></div>
+      </div>
+    </section>
+
+    <section class="post-content post-container" id="post-content"></section>
+
+    <footer>
+      <div class="footer container">
+        <p>Nurlan Rajabov</p>
+        <div class="social">
+          <a href=""><i class="bx bxl-linkedin-square"></i></a>
+          <a href=""><i class="bx bxl-whatsapp"></i></a>
+          <a href=""><i class="bx bxl-instagram"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const postTitle = decodeURIComponent(
+          window.location.pathname.split("/").pop()
+        )
+          .replace(/-/g, " ")
+          .trim();
+
+        const postTitleEl = document.getElementById("post-title");
+        const postSubtitleEl = document.getElementById("post-subtitle");
+        const postContentEl = document.getElementById("post-content");
+        const postImageEl = document.getElementById("post-image");
+
+        if (!postTitleEl || !postSubtitleEl || !postContentEl || !postImageEl) {
+          console.error("One or more required elements are missing in the DOM.");
+          return;
+        }
+
+        fetch(`/post/${encodeURIComponent(postTitle.toLowerCase())}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Error: ${response.statusText}`);
+            }
+            return response.json();
+          })
+          .then((post) => {
+            postTitleEl.textContent = post.title;
+            postSubtitleEl.textContent = post.category;
+            postContentEl.innerHTML = `
+              <p>${post.content || "No content available."}</p>
+            `;
+            if (post.image) {
+              postImageEl.innerHTML = `
+                <img src="${post.image}" alt="${post.title}" class="post-img" />
+              `;
+            }
+          })
+          .catch((err) => {
+            postTitleEl.textContent = "Post not found.";
+            console.error("Error fetching post:", err);
+          });
+      });
+    </script>
+  </body>
+</html>
