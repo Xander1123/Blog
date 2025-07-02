@@ -9,6 +9,7 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/png" href="/images/favicon.ico" />
   </head>
   <body>
     <!-- Header -->
@@ -26,39 +27,62 @@
     </header>
 
     <!-- Home -->
-    <section class="home">
-      <div class="home-content">
-        <h2>The Nurlan Blog</h2>
-        <div class="search-box">
-          <i class="bx bx-search"></i>
-          <input type="search" name="" id="" placeholder="Search" />
-        </div>
-      </div>
-    </section>
+<section class="home" style="background-image: url('/images/bg.jpg');">
+  <div class="home-content">
+    <h2>The Nurlan Blog</h2>
+    <div class="search-box">
+      <i class="bx bx-search"></i>
+      <input type="search" name="" id="" placeholder="Search" />
+    </div>
+  </div>
+</section>
+
+    <!-- Post filter -->
+    <div class="post-filter container" id=>
+      <span class="filter-item active-filter" data-filter="all">All</span>
+      <span class="filter-item" data-filter="art">Art</span>
+      <span class="filter-item" data-filter="technology">Technology</span>
+      <span class="filter-item" data-filter="food">Food</span>
+    </div>
 
     <!-- Posts -->
 
     <section class="posts container" id="posts">
       <!-- post will show here  -->
     </section>
-    
+
     <footer>
-
-        <div class="footer container">
-            <p>Nurlan Rajabov </p>
-            <div class="social">
-                <a href=""><i class='bx bxl-linkedin-square' ></i></a>
-                <a href=""><i class="bx bxl-whatsapp"></i></a>
-                <a href=""><i class="bx bxl-instagram"></i></a>
-                
-            </div>
-
-
+      <div class="footer container">
+        <p>Nurlan Rajabov</p>
+        <div class="social">
+          <a href=""><i class="bx bxl-linkedin-square"></i></a>
+          <a href=""><i class="bx bxl-whatsapp"></i></a>
+          <a href=""><i class="bx bxl-instagram"></i></a>
         </div>
-
+      </div>
     </footer>
 
     <!-- Link to js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/main.js"></script>
+
+    <!-- <script>
+    $(document).ready(function () {
+  $(".filter-item").click(function () {
+    const value = $(this).attr("data-filter");
+    if (value === "all") {
+      $(".post-card").show("1000");
+    } else {
+      $(".post-card").not("." + value).hide("1000");
+      $(".post-card").filter("." + value).show("1000");
+    }
+
+    // Aktiv filter sinfi yeniləmə
+    $(".filter-item").removeClass("active-filter");
+    $(this).addClass("active-filter");
+  });
+});
+
+    </script> -->
   </body>
 </html>

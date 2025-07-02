@@ -9,6 +9,8 @@
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+        <link rel="icon" type="image/png" href="/images/favicon.ico" />
+
   </head>
   <body>
     <header>
@@ -26,16 +28,27 @@
 
     <!-- Post Content -->
 
-    <section class="post-header">
+    <section class="home" style="background-image: url('/images/bg post-details.jpg')" >
       <div class="header-content post-container">
-        <h2 id="post-subtitle"></h2>
+        <h2 id="post-category"></h2>
 
         <h1 class="header-title" id="post-title"></h1>
         <div id="post-image"></div>
       </div>
     </section>
 
+
+
     <section class="post-content post-container" id="post-content"></section>
+
+    <div class="share post-container">
+      <span class="share-title">Share this article</span>
+      <div class="social">
+        <a href=""><i class="bx bxl-linkedin-square"></i></a>
+        <a href=""><i class="bx bxl-whatsapp"></i></a>
+        <a href=""><i class="bx bxl-instagram"></i></a>
+      </div>
+    </div>
 
     <footer>
       <div class="footer container">
@@ -47,27 +60,35 @@
         </div>
       </div>
     </footer>
-
     <script src="js/main.js"></script>
-     <script>
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const postTitle = decodeURIComponent(
-          window.location.pathname.split("/").pop()
-        )
-          .replace(/-/g, " ")
-          .trim();
+        // Parse slug from URL path (expects /post-details/:slug)
+        const segments = window.location.pathname.split("/");
+        const rawSlug = segments.pop() || segments.pop(); // handle trailing slash
+        if (!rawSlug) {
+          console.error("No slug in URL path");
+          document.getElementById("post-title").textContent = "Post not found.";
+          return;
+        }
+        const postTitle = decodeURIComponent(rawSlug)
+          .replace(/-/g, "")
+          .trim()
+          .toLowerCase();
 
         const postTitleEl = document.getElementById("post-title");
-        const postSubtitleEl = document.getElementById("post-subtitle");
+        const postSubtitleEl = document.getElementById("post-category");
         const postContentEl = document.getElementById("post-content");
         const postImageEl = document.getElementById("post-image");
 
         if (!postTitleEl || !postSubtitleEl || !postContentEl || !postImageEl) {
-          console.error("One or more required elements are missing in the DOM.");
+          console.error(
+            "One or more required elements are missing in the DOM."
+          );
           return;
         }
 
-        fetch(`/post/${encodeURIComponent(postTitle.toLowerCase())}`)
+        fetch(`/post/${encodeURIComponent(postTitle)}`)
           .then((response) => {
             if (!response.ok) {
               throw new Error(`Error: ${response.statusText}`);
@@ -77,13 +98,13 @@
           .then((post) => {
             postTitleEl.textContent = post.title;
             postSubtitleEl.textContent = post.category;
-            postContentEl.innerHTML = `
-              <p>${post.content || "No content available."}</p>
-            `;
+            postContentEl.innerHTML = `<p>${
+              post.content || "No content available."
+            }</p>`;
             if (post.image) {
               postImageEl.innerHTML = `
-                <img src="${post.image}" alt="${post.title}" class="post-img" />
-              `;
+            <img src="${post.image}" alt="${post.title}" class="post-img" />
+          `;
             }
           })
           .catch((err) => {

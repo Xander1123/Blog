@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="admin-panel">
+      <h1>Admin Panel</h1>
+      <a href="/add" class="add-post-link">Add New Post</a>
+      <table id="post-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ADMIN post will show here baby -->
+        </tbody>
+      </table>
+      <a href="/" class="admin-back-link">Back To Home</a>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/posts")
+          .then((response) => response.json())
+          .then((posts) => {
+            const postsTableBody = document.querySelector("#post-table tbody");
+            postsTableBody.innerHTML = posts;
+            postsTableBody.innerHTML = posts
+              .map(
+                (post) => `<tr>
+            <td>
+                ${
+                  post.image
+                    ? `<img src="${post.image}" alt="${post.title}">`
+                    : "No Image"
+                }
+            </td>
+            <td>${post.title}</td>
+            <td>${post.category || "No Category"}</td>
+            <td>
+                <button class="delete-button" data-id="${
+                  post.id
+                }">Delete</button>
+            </td>
+        </tr>`
+              )
+              .join("");
+              //Burdan sonra delete baslayacaq 
+
+
+              document.querySelectorAll(".delete-button").forEach((button)=>
+              {
+                button.addEventListener("click" , function (){
+                    const postId = this.getAttribute("data-id")
+                    fetch(`/delete/${postId}` ,{
+
+                     method: "POST",
+                    })
+                    .then((response) =>{
+                        if (!response.ok){
+                            throw new Error("Netrowrk response not ok")
+                        }
+
+                        //remove the row from table
+                        this.closest("tr").remove();
+
+                    })
+                    .catch((error) =>{
+                        console.error(
+                            "There was a problem with the fetch operation",error
+                    )       
+
+                    })  
+                })
+              })
+          });
+      });
+    </script>
+  </body>
+</html>
