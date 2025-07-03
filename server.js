@@ -20,7 +20,7 @@ app.get("/admin", (req, res) => {
 app.get("/add", (req, res) => {
   res.sendFile(path.join(__dirname,  "views", "add.html"));
 });
-app.get("/post-details/:title", (req, res) => {
+app.get("/post/:title'", (req, res) => {
   res.sendFile(path.join(__dirname,  "views", "post-details.html"));
 });
 
