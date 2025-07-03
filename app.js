@@ -10,7 +10,7 @@ const db = new sqlite3.Database('./database.db');
 
 // 🔐 Admin və /add səhifələrini parolla qoruyuruq
 app.use(['/admin', '/add'], basicAuth({
-    users: { 'admin': '12345' }, // şifrəni istəyə uyğun dəyiş
+    users: { 'admin': 'Htubcnhfcbz' }, // şifrəni istəyə uyğun dəyiş
     challenge: true,
     unauthorizedResponse: 'İcazəniz yoxdur!'
 }));
