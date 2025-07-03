@@ -50,6 +50,7 @@ app.get("/post-details/:title", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "post-details.html"));
   });
 });
+
 app.get("/post/:title", (req, res) => {
   const postTitle = req.params.title.replace(/-/g, ' ').trim().toLowerCase();
   db.get('SELECT * FROM posts WHERE TRIM(LOWER(title)) = ?', [postTitle], (err, row) => {

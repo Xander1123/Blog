@@ -84,5 +84,25 @@
 });
 
     </script> -->
+
+    <script>
+    // URL-dən title-ı götürün
+    const title = window.location.pathname.split('/').pop().replace(/-/g, ' ').trim().toLowerCase();
+
+    fetch(`/post/${encodeURIComponent(title)}`)
+      .then(response => {
+        if (!response.ok) throw new Error('Post not found');
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById('post-title').textContent = data.title;
+        document.getElementById('post-content').textContent = data.content || 'Məzmun yoxdur';
+        if (data.image) document.getElementById('post-image').src = data.image;
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('post-details').innerHTML = '<h1>Post tapılmadı</h1>';
+      });
+  </script>
   </body>
 </html>
