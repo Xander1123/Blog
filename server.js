@@ -9,8 +9,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Ana səhifə
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "public", "views", "index.html"));
 });
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
