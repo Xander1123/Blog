@@ -12,16 +12,16 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Rotlar
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "views", "index.html"));
+  res.sendFile(path.join(__dirname,  "views", "index.html"));
 });
 app.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "views", "admin.html"));
+  res.sendFile(path.join(__dirname,  "views", "admin.html"));
 });
 app.get("/add", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "views", "add.html"));
+  res.sendFile(path.join(__dirname,  "views", "add.html"));
 });
 app.get("/post-details/:title", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "views", "post-details.html"));
+  res.sendFile(path.join(__dirname,  "views", "post-details.html"));
 });
 
 // Posts API
