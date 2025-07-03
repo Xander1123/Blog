@@ -20,9 +20,13 @@ app.get("/admin", (req, res) => {
 app.get("/add", (req, res) => {
   res.sendFile(path.join(__dirname,  "views", "add.html"));
 });
+app.get("/post-details/:title", (req, res) => {
+  res.sendFile(path.join(__dirname,  "views", "post-details.html"));
+});
 app.get("/post/:title'", (req, res) => {
   res.sendFile(path.join(__dirname,  "views", "post-details.html"));
 });
+
 
 // Posts API
 app.get('/posts', (req, res) => {
