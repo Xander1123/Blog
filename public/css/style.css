@@ -7,7 +7,6 @@
 }
 
 :root {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --primary-color: #4caf50;
   --primary-dark: #388e3c;
   --accent-color: #ff9800;
@@ -159,9 +158,9 @@ header {
   padding: 80px 0;
   min-height: 400px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 sütun, yan yana */
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
-  justify-content: center; /* Balanslı hizalama */
+  justify-content: center;
 }
 
 /* Post Cards */
@@ -173,9 +172,9 @@ header {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Eyni hündürlüyü qorumaq üçün */
-  min-height: 400px; /* Minimum hündürlük */
-  padding: 1rem; /* İçəriki boşluq */
+  height: 100%;
+  min-height: 400px;
+  padding: 1rem;
 }
 
 .post-card:hover {
@@ -183,7 +182,6 @@ header {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Şəkil Başlıq Kimi Göstərilməsi */
 .post-image-container img {
   width: 100%;
   height: 100%;
@@ -191,34 +189,33 @@ header {
 }
 
 .post-img {
-  width: 100%; /* konteynerin tam eninə uyğunlaşır */
-  max-width: 400px; /* maksimum en */
-  height: auto; /* proporsiyanı qoruyur */
-  max-height: 300px; /* maksimum hündürlük */
-  object-fit: cover; /* lazım olmayan hissələri gizlədir */
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
   display: block;
-  margin: 0 auto; /* mərkəzləşdirmək üçün */
-  border-radius: 8px; /* istəyə görə yuvarlaq künc */
+  margin: 0 auto;
+  border-radius: 8px;
 }
 
 .post-image {
-  width: 80%; /* Daha kiçik genişlik */
-  height: auto; /* Proporsiya qorunur */
-  object-fit: contain; /* Şəkli kassa içində uyğunlaşdır */
+  width: 80%;
+  height: auto;
+  object-fit: contain;
   display: block;
-  border-radius: 5px; /* Yuvarlaq künclər */
+  border-radius: 5px;
 }
 
 @media (max-width: 768px) {
   .post-image-container {
-    height: 90px; /* Mobil üçün daha kiçik */
+    height: 90px;
   }
   .post-image {
-    width: 75%; /* Mobil üçün daha kiçik */
+    width: 75%;
   }
 }
 
-/* Post Kategoriyası */
 .post-category {
   font-size: 1rem;
   color: var(--medium-text);
@@ -232,7 +229,6 @@ header {
   text-align: center;
 }
 
-/* Post Başlığı */
 .post-title {
   font-size: 1.6rem;
   margin: 0.8rem 0;
@@ -240,7 +236,7 @@ header {
   font-weight: 600;
   word-wrap: break-word;
   padding: 0 1rem;
-  max-height: 4.8em; /* 2 xətt */
+  max-height: 4.8em;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -249,7 +245,6 @@ header {
   text-align: center;
 }
 
-/* Post Məzmunu (Main Page-də Qısa) */
 .post-desc {
   color: var(--medium-text);
   line-height: 1.6;
@@ -257,7 +252,7 @@ header {
   font-size: 1rem;
   padding: 0 1rem;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Main page-də 2 xətt */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -266,7 +261,6 @@ header {
   hyphens: auto;
 }
 
-/* Read More Link */
 .read-more {
   color: var(--primary-color);
   text-decoration: none;
@@ -283,15 +277,15 @@ header {
 /* Responsive Design for Posts */
 @media (max-width: 1024px) {
   .posts {
-    grid-template-columns: repeat(2, 1fr); /* 2 sütun */
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .post-card {
-    min-height: 350px; /* Orta ölçülü ekranlar üçün */
+    min-height: 350px;
   }
 
   .post-image-container {
-    height: 180px; /* Şəkil hündürlüyü azaldılır */
+    height: 180px;
   }
 
   .post-title {
@@ -301,20 +295,20 @@ header {
 
 @media (max-width: 768px) {
   .posts {
-    grid-template-columns: 1fr; /* 1 sütun, alt alta */
+    grid-template-columns: 1fr;
   }
 
   .post-card {
-    min-height: 300px; /* Mobil üçün */
+    min-height: 300px;
   }
 
   .post-image-container {
-    height: 150px; /* Mobil üçün şəkil hündürlüyü */
+    height: 150px;
   }
 
   .post-title {
     font-size: 1.3rem;
-    -webkit-line-clamp: 1; /* 1 xətt */
+    -webkit-line-clamp: 1;
     max-height: 2.4em;
   }
 
@@ -326,15 +320,15 @@ header {
 
 @media (max-width: 480px) {
   .posts {
-    grid-template-columns: 1fr; /* 1 sütun */
+    grid-template-columns: 1fr;
   }
 
   .post-card {
-    min-height: 250px; /* Kiçik ekranlar üçün */
+    min-height: 250px;
   }
 
   .post-image-container {
-    height: 120px; /* Kiçik ekranlar üçün */
+    height: 120px;
   }
 
   .post-title {
@@ -464,7 +458,7 @@ footer {
   max-width: 100%;
   word-wrap: break-word;
   hyphens: auto;
-  display: block; /* Tam mətn göstərilsin */
+  display: block;
 }
 
 .post-content.post-container h1,
@@ -500,7 +494,7 @@ footer {
 
 .post-content.post-container .post-image-container {
   width: 100%;
-  height: 300px; /* Daha böyük başlıq şəkili */
+  height: 300px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -730,12 +724,6 @@ footer {
   color: white;
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-}
-.admin-btn {
-  display: none !important;
-}
-.write-btn {
-  display: none !important;
 }
 
 /* Admin Panel Styles */
@@ -1068,7 +1056,7 @@ footer {
 /* Responsive Design */
 @media (max-width: 1024px) {
   .posts {
-    grid-template-columns: 1fr; /* 1 sütun saxlanılır */
+    grid-template-columns: 1fr;
   }
 
   .post-content.post-container .image-gallery {
@@ -1076,7 +1064,7 @@ footer {
   }
 
   .post-image-container {
-    height: 250px; /* Orta ölçülü ekranlar üçün */
+    height: 250px;
   }
 
   .post-card {
@@ -1111,8 +1099,7 @@ footer {
     padding: 80px 40px 60px;
     background-size: cover;
     background-position: center;
-
-    height: 80vh; /* Mobilda yüksəkliyi avtomatik et */
+    height: 80vh;
   }
   .home-content h2 {
     font-size: 2.2rem;
@@ -1125,7 +1112,7 @@ footer {
 
   .posts {
     padding: 60px 0;
-    grid-template-columns: 1fr; /* 1 sütun */
+    grid-template-columns: 1fr;
   }
 
   .posts h3 {
